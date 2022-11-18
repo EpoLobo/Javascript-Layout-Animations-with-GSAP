@@ -44,7 +44,11 @@ cards.forEach((card, index) => {
         Flip.from (state, {
             duration: 1,
             ease: "expo.out",
-            absolute: true
+            absolute: true,
+            //For writing paragraph in bottom
+            // onComplete: () => {
+            //     gsap.to(".card p", {y: 500});
+            // }
         });
     });
 });
