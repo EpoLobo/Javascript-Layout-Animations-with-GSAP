@@ -15,8 +15,30 @@ links.forEach(link => {
         const state = Flip.getState(activeNav);
         link.appendChild(activeNav);
         Flip.from(state, {
-            duration: 0.5,
+            duration: 1.25,
             absolute: true,
+            ease: 'elastic.out(1, 0.5)',
         });
     });
 })
+
+//Cards
+const cards = document.querySelectorAll('.card');
+
+cards.forEach((card, index) => {
+    card.addEventListener("click", () => {
+        //Get state
+        const state = Flip.getState(cards);
+
+        //Add the active class to the clicked one and inactive to the others
+        const isCardActive = card.classList.contains("active");
+        cards.forEach((otherCard, otherIdx) =>{
+            otherCard.classList.remove("active");
+            otherCard.classList.remove("is-inactive");
+            if (!isCardActive && index !== otherIdx) {
+                otherCard.classList.add("is-inactive");
+            }
+        });
+        if(!isCardActive) card.classList.add("active");
+    });
+});
